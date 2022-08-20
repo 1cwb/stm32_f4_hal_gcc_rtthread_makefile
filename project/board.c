@@ -64,7 +64,6 @@ RT_WEAK void *rt_heap_end_get(void)
 }
 #endif
 
-
 void rt_hw_console_output(const char *str)
 {
     /* empty console output */
