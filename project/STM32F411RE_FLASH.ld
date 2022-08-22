@@ -15,7 +15,7 @@
 **
 **  Environment : Atollic TrueSTUDIO(R)
 **
-**  Distribution: The file is distributed “as is,” without any warranty
+**  Distribution: The file is distributed ï¿½as is,ï¿½ without any warranty
 **                of any kind.
 **
 **  (c)Copyright Atollic AB.
@@ -68,6 +68,7 @@ SECTIONS
     KEEP (*(.init))
     KEEP (*(.fini))
 
+
     . = ALIGN(4);
     _etext = .;        /* define a global symbols at end of code */
   } >FLASH
@@ -78,6 +79,12 @@ SECTIONS
     . = ALIGN(4);
     *(.rodata)         /* .rodata sections (constants, strings, etc.) */
     *(.rodata*)        /* .rodata* sections (constants, strings, etc.) */
+    . = ALIGN(4);
+
+       /* section information for initial. */
+    __rt_init_start = .;
+    KEEP(*(SORT(.rti_fn*)))
+    __rt_init_end = .;
     . = ALIGN(4);
   } >FLASH
 

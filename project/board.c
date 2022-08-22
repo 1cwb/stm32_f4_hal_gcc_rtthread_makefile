@@ -79,6 +79,12 @@ void rt_hw_console_output(const char *str)
     rt_exit_critical();
 }
 
+int test_board_section_init()
+{
+    rt_kprintf("tony test this is a board init function\n");
+    return 0;
+}
+INIT_BOARD_EXPORT(test_board_section_init);
 /**
  * This function will initial your board.
  */
