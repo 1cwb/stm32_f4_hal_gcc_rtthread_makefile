@@ -22,7 +22,7 @@ void led1_thread_entry(void* p)
 {
     while(1)
     {
-      rt_thread_delay(200);
+      rt_thread_delay(200000);
       //printf("this thread tid is %s\n",rt_thread_self()->name);
     }
 }
@@ -31,16 +31,16 @@ void led1_thread2_entry(void* p)
 {
   while(1)
   {
-    
-    rt_thread_delay(500);
-    //rt_hw_us_delay(5000000);
-    //printf("led2 off\n");
+
+    rt_hw_us_delay(500000);
+    printf("led2 off\n");
     led_off();
     
-    rt_thread_delay(500);
-    //rt_hw_us_delay(5000000);
-    //printf("led2 on\n");
+    //rt_thread_delay(500000);
+    rt_hw_us_delay(500000);
+    printf("led2 on\n");
     led_on();
+    
   }
 }
 void mtimerout()
@@ -60,6 +60,7 @@ void mtimerout()
 }
 int main(void)
 {
+  rt_uint32_t total, maxused, used;
   struct rt_timer timer1;
   rt_timer_init(&timer1,"timer1",mtimerout,RT_NULL,50,RT_TIMER_FLAG_PERIODIC);
   rt_timer_start(&timer1);
@@ -70,8 +71,10 @@ int main(void)
   rt_thread_startup(led2_thread);
   while(RT_TRUE)
   {
-      rt_thread_delay(5000);
-      //rt_timer_stop(&timer1);
-      //rt_timer_detach(&timer1);
+      rt_thread_delay(50000);
+      //rt_memory_info(&total,&used,&maxused);
+      ///printf("total : %u\r\n",total);
+      //printf("used : %u\r\n",used);
+      //printf("maxused : %u\r\n",maxused);
   }
 }

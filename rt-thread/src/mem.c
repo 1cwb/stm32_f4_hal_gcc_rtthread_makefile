@@ -302,6 +302,7 @@ void *rt_malloc(rt_size_t size)
     /* take memory semaphore */
     rt_sem_take(&heap_sem, RT_WAITING_FOREVER);
 
+    //ptr < mem_size_aligned - size; 《==》 (ptr + SIZEOF_STRUCT_MEM + size) < (mem_size_aligned + SIZEOF_STRUCT_MEM)
     for (ptr = (rt_uint8_t *)lfree - heap_ptr;
          ptr < mem_size_aligned - size;
          ptr = ((struct heap_mem *)&heap_ptr[ptr])->next)

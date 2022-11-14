@@ -51,8 +51,8 @@ extern uint32_t SystemCoreClock;
 
 
 #if defined(RT_USING_USER_MAIN) && defined(RT_USING_HEAP)
-#define RT_HEAP_SIZE 1024
-static uint32_t rt_heap[RT_HEAP_SIZE];     // heap default size: 4K(1024 * 4)
+#define RT_HEAP_SIZE (1024 * 16) //16K
+static uint8_t rt_heap[RT_HEAP_SIZE];
 RT_WEAK void *rt_heap_begin_get(void)
 {
     return rt_heap;

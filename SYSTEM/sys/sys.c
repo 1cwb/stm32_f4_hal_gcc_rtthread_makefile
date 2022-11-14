@@ -36,7 +36,7 @@ void Stm32_Clock_Init(uint32_t pllm, uint32_t plln, uint32_t pllp, uint32_t pllq
         ret=HAL_RCC_ClockConfig(&RCC_ClkInitStructure, FLASH_LATENCY_3);
         if(ret != HAL_OK) break;
     }while(0);
-	HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);//systick时钟默认使用HCLK，可以手动设置为AHB/8
+	HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);//systick时钟默认使用HCLK，可以手动设置为AHB/8，1ms 进一次中断
 	HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
     if(ret!=HAL_OK) while(1);
 }

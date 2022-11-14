@@ -29,7 +29,7 @@ SIZEINFO            := $(CROSS_COMPILE)size
 #############################################################ARM################################
 CPU           		:= -mcpu=cortex-m4
 FPU        			:= -mfpu=fpv4-sp-d16
-FLOAT_ABT 			:= -mfloat-abi=soft
+FLOAT_ABT 			:= -mfloat-abi=hard
 ARM_INSTRUCTION 	:= -mthumb
 MCU_FLAGS       	:= $(CPU) $(ARM_INSTRUCTION) $(FPU) $(FLOAT_ABT)
 
@@ -39,7 +39,7 @@ C_COMPILE_FLAGS 	:= -lc -lm -lnosys -std=c11 -Wall -fdata-sections -ffunction-se
 CXX_COMPILE_FLAGS 	:= -lc -lm -lnosys -fno-rtti -std=c++11 -fno-exceptions -fno-builtin -Wall \
 						-fdata-sections -ffunction-sections -g3 -gdwarf-2 -O0
 
-ASM_COMPILE_FLAGS 	:= -x assembler-with-cpp
+ASM_COMPILE_FLAGS 	:= -x assembler-with-cpp -Wa,-mimplicit-it=thumb
 #################################################################################################
 EXTRA_LINK_FLAGS	:= -g -gdwarf-2 -lc -lm -lnosys -T$(LINK_FILES) \
 						-Wl,-Map=$(OUTPUTDIR)/$(TARGET).map,--cref,--no-warn-mismatch \
